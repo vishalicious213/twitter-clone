@@ -1,4 +1,4 @@
-import { tweetsData } from "./data";
+import { tweetsData } from "./data.js"
 
 console.log("Twimba")
 console.log(tweetsData)
