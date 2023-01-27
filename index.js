@@ -19,6 +19,8 @@ function handleLikeClick(tweetId) {
     const targetTweetObj = tweetsData.filter(function(tweet) {
         return tweet.uuid === tweetId
     })
+
+    targetTweetObj[0].likes += 1
     
     console.log(targetTweetObj[0])
 }
