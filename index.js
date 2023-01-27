@@ -16,7 +16,11 @@ document.addEventListener("click", function(e) {
 })
 
 function handleLikeClick(tweetId) {
-    console.log(tweetId)
+    const targetTweetObj = tweetsData.filter(function(tweet) {
+        return tweet.uuid === tweetId
+    })
+    
+    console.log(targetTweetObj[0])
 }
 
 // ⬇️ RENDER THE FEED ⬇️
