@@ -22,11 +22,11 @@ function handleLikeClick(tweetId) {
 
     if (targetTweetObj.isLiked === false) {
         targetTweetObj.likes++
-        targetTweetObj.isLiked = true
     } else {
         targetTweetObj.likes--
-        targetTweetObj.isLiked = false
     }
+
+    targetTweetObj.isLiked = !targetTweetObj.isLiked
 
     renderFeed()
 }
