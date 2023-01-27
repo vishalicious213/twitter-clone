@@ -20,7 +20,14 @@ function handleLikeClick(tweetId) {
         return tweet.uuid === tweetId
     })[0] // filter returns an array, adding the [0] returns the 1st array element
 
-    targetTweetObj.likes++
+    if (targetTweetObj.isLiked === false) {
+        targetTweetObj.likes++
+        targetTweetObj.isLiked = true
+    } else {
+        targetTweetObj.likes--
+        targetTweetObj.isLiked = false
+    }
+
     renderFeed()
 }
 
