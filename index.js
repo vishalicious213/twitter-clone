@@ -3,15 +3,23 @@ import { tweetsData } from "./data.js"
 const tweetInput = document.getElementById("tweet-input")
 const tweetBtn = document.getElementById("tweet-btn")
 
+// ⬇️ USER INTERFACE ⬇️
+
 tweetBtn.addEventListener("click", function() {
     console.log(tweetInput.value)
 })
 
 document.addEventListener("click", function(e) {
     if (e.target.dataset.like) {
-        console.log(e.target.dataset.like)
+        handleLikeClick(e.target.dataset.like)
     }
 })
+
+function handleLikeClick(tweetId) {
+    console.log(tweetId)
+}
+
+// ⬇️ RENDER THE FEED ⬇️
 
 // render tweets onto #feed
 function renderFeed() {
