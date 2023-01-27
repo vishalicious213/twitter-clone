@@ -7,6 +7,12 @@ tweetBtn.addEventListener("click", function() {
     console.log(tweetInput.value)
 })
 
+// render tweets onto #feed
+function renderFeed() {
+    document.getElementById("feed").innerHTML = getFeedHtml()
+}
+
+// iterate through tweetsData and create HTML for each tweet
 function getFeedHtml() {
     let feedHtml = ""
 
@@ -38,4 +44,4 @@ function getFeedHtml() {
     return(feedHtml)
 }
 
-console.log(getFeedHtml())
+renderFeed()
