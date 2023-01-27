@@ -20,9 +20,8 @@ function handleLikeClick(tweetId) {
         return tweet.uuid === tweetId
     })[0] // filter returns an array, adding the [0] returns the 1st array element
 
-    targetTweetObj.likes += 1
-    
-    console.log(targetTweetObj)
+    targetTweetObj.likes++
+    renderFeed()
 }
 
 // ⬇️ RENDER THE FEED ⬇️
