@@ -7,6 +7,12 @@ tweetBtn.addEventListener("click", function() {
     console.log(tweetInput.value)
 })
 
+document.addEventListener("click", function(e) {
+    if (e.target.dataset.like) {
+        console.log(e.target.dataset.like)
+    }
+})
+
 // render tweets onto #feed
 function renderFeed() {
     document.getElementById("feed").innerHTML = getFeedHtml()
