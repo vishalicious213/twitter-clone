@@ -18,11 +18,11 @@ document.addEventListener("click", function(e) {
 function handleLikeClick(tweetId) {
     const targetTweetObj = tweetsData.filter(function(tweet) {
         return tweet.uuid === tweetId
-    })
+    })[0] // filter returns an array, adding the [0] returns the 1st array element
 
-    targetTweetObj[0].likes += 1
+    targetTweetObj.likes += 1
     
-    console.log(targetTweetObj[0])
+    console.log(targetTweetObj)
 }
 
 // ⬇️ RENDER THE FEED ⬇️
