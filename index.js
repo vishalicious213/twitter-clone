@@ -69,6 +69,14 @@ function getFeedHtml() {
     let feedHtml = ""
 
     tweetsData.forEach(function(tweet) {
+        let likeIconClass = "" // add this empty class to the "liked" icon
+
+        // if tweet is liked, populate likeIconClass with "liked" to change its color
+        if (tweet.isLiked) {
+            likeIconClass = "liked"
+        }
+
+        // render tweet
         feedHtml += `
             <div class="tweet">
                 <div class="tweet-inner">
@@ -82,7 +90,7 @@ function getFeedHtml() {
                                 ${tweet.replies.length}
                             </span>
                             <span class="tweet-detail">
-                                <i class="fa-solid fa-heart" data-like="${tweet.uuid}"></i>
+                                <i class="fa-solid fa-heart ${likeIconClass}" data-like="${tweet.uuid}"></i>
                                 ${tweet.likes}
                             </span>
                             <span class="tweet-detail">
