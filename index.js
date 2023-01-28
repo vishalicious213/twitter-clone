@@ -70,10 +70,15 @@ function getFeedHtml() {
 
     tweetsData.forEach(function(tweet) {
         let likeIconClass = "" // add this empty class to the "liked" icon
+        let retweetIconClass = ""
 
         // if tweet is liked, populate likeIconClass with "liked" to change its color
         if (tweet.isLiked) {
             likeIconClass = "liked"
+        }
+
+        if (tweet.isRetweeted) {
+            retweetIconClass = "retweeted"
         }
 
         // render tweet
@@ -86,15 +91,24 @@ function getFeedHtml() {
                         <p class="tweet-text">${tweet.tweetText}</p>
                         <div class="tweet-details">
                             <span class="tweet-detail">
-                                <i class="fa-regular fa-comment-dots" data-reply="${tweet.uuid}"></i>
+                                <i 
+                                    class="fa-regular fa-comment-dots" 
+                                    data-reply="${tweet.uuid}">
+                                </i>
                                 ${tweet.replies.length}
                             </span>
                             <span class="tweet-detail">
-                                <i class="fa-solid fa-heart ${likeIconClass}" data-like="${tweet.uuid}"></i>
+                                <i 
+                                    class="fa-solid fa-heart ${likeIconClass}" 
+                                    data-like="${tweet.uuid}">
+                                </i>
                                 ${tweet.likes}
                             </span>
                             <span class="tweet-detail">
-                                <i class="fa-solid fa-retweet" data-retweet="${tweet.uuid}"></i>
+                                <i 
+                                    class="fa-solid fa-retweet ${retweetIconClass}" 
+                                    data-retweet="${tweet.uuid}">
+                                </i>
                                 ${tweet.retweets}
                             </span>
                         </div>   
