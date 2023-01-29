@@ -25,14 +25,14 @@ document.addEventListener("click", function(e) {
     }
 })
 
-// listen for clicks on the reply button
+// listen for clicks on the replies icon (to open replies)
 document.addEventListener("click", function(e) {
     if (e.target.dataset.reply) {
         handleReplyClick(e.target.dataset.reply)
     }
 })
 
-// listen for clicks on the tweet text
+// listen for clicks on the tweet text (to reply to tweet)
 document.addEventListener("click", function(e) {
     if (e.target.dataset.text) {
         handleTweetTextClick(e.target.dataset.text)
@@ -110,6 +110,15 @@ function handleTweetTextClick(tweetId) {
     })[0] // filter returns an array, adding the [0] returns the 1st array element
 
     console.log("tweet text", targetTweetObj.tweetText)
+
+    const newReply = {
+        handle: `@Scrimba ✅`,
+        profilePic: `images/scrimbalogo.png`,
+        tweetText: `Reply from @Scrimba!`,
+    }
+
+    targetTweetObj.replies.push(newReply)
+    renderFeed()
 }
 
 // ⬇️ RENDER THE FEED ⬇️
