@@ -71,6 +71,7 @@ function getFeedHtml() {
     tweetsData.forEach(function(tweet) {
         let likeIconClass = "" // add this empty class to the "liked" icon
         let retweetIconClass = ""
+        let repliesHtml = "" // this will hold replies to a tweet
 
         // if tweet is liked, populate likeIconClass with "liked" to change its color
         if (tweet.isLiked) {
@@ -81,9 +82,21 @@ function getFeedHtml() {
             retweetIconClass = "retweeted"
         }
 
-        // check if tweet has replies. log its uuid if it does
+        // check if tweet has replies. render them in "replies-tweetUuid" div if it does
         if (tweet.replies.length > 0) {
-            console.log(tweet.uuid)
+            tweet.replies.forEach(function(reply) {
+                repliesHtml += `
+                    <div class="tweet-reply">
+                        <div class="tweet-inner">
+                            <img src="${reply.profilePic}" class="profile-pic">
+                                <div>
+                                    <p class="handle">${reply.handle}</p>
+                                    <p class="tweet-text">${reply.tweetText}</p>
+                                </div>
+                            </div>
+                    </div>
+                `
+            })
         }
 
         // render tweet
@@ -119,6 +132,7 @@ function getFeedHtml() {
                         </div>   
                     </div>            
                 </div>
+                <div id="replies=${tweet.uuid}">${repliesHtml}</div>
             </div>
         `        
     })
