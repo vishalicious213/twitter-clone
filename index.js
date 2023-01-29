@@ -5,8 +5,9 @@ const tweetBtn = document.getElementById("tweet-btn")
 
 // ⬇️ USER INTERFACE ⬇️
 
+// listen for clicks on the tweet button
 tweetBtn.addEventListener("click", function() {
-    console.log(tweetInput.value)
+    handleTweetBtnClick()
 })
 
 // listen for clicks on the like button
@@ -67,6 +68,11 @@ function handleRetweetClick(tweetId) {
 // handle clicks on the reply button
 function handleReplyClick(replyId) {
     document.getElementById(`replies=${replyId}`).classList.toggle("hidden")
+}
+
+// handle clicks on the tweet button
+function handleTweetBtnClick() {
+    console.log(tweetInput.value)
 }
 
 // ⬇️ RENDER THE FEED ⬇️
