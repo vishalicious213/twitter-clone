@@ -1,4 +1,6 @@
 import { tweetsData } from "./data.js"
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
+// console.log(uuidv4()) // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 
 const tweetInput = document.getElementById("tweet-input")
 const tweetBtn = document.getElementById("tweet-btn")
@@ -72,7 +74,20 @@ function handleReplyClick(replyId) {
 
 // handle clicks on the tweet button
 function handleTweetBtnClick() {
-    console.log(tweetInput.value)
+    // console.log(tweetInput.value)
+    const newTweet = {
+        handle: `@Scrimba 💎`,
+        profilePic: `images/scrimbalogo.png`,
+        likes: 0,
+        retweets: 0,
+        tweetText: tweetInput.value,
+        replies: [],
+        isLiked: false,
+        isRetweeted: false,
+        uuid: uuidv4(),
+    }
+
+    console.log(newTweet)
 }
 
 // ⬇️ RENDER THE FEED ⬇️
