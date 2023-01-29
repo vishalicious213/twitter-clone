@@ -35,9 +35,11 @@ document.addEventListener("click", function(e) {
 // listen for clicks on the tweet text
 document.addEventListener("click", function(e) {
     if (e.target.dataset.text) {
-        console.log("tweet text", e.target.dataset.text)
+        handleTweetTextClick(e.target.dataset.text)
     }
 })
+
+// ⬇️ EVENT HANDLERS ⬇️
 
 // handle clicks on the like button
 function handleLikeClick(tweetId) {
@@ -78,7 +80,7 @@ function handleReplyClick(replyId) {
     document.getElementById(`replies=${replyId}`).classList.toggle("hidden")
 }
 
-// handle clicks on the tweet button
+// handle clicks on the tweet button (new tweet)
 function handleTweetBtnClick() {
     const tweetInput = document.getElementById("tweet-input")
 
@@ -99,6 +101,15 @@ function handleTweetBtnClick() {
         tweetInput.value = ""
         renderFeed()
     }
+}
+
+// handle clicks on the tweet text (reply to tweet)
+function handleTweetTextClick(tweetId) {
+    const targetTweetObj = tweetsData.filter(function(tweet) {
+        return tweet.uuid === tweetId
+    })[0] // filter returns an array, adding the [0] returns the 1st array element
+
+    console.log("tweet text", targetTweetObj.tweetText)
 }
 
 // ⬇️ RENDER THE FEED ⬇️
