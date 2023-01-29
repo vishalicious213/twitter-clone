@@ -2,7 +2,6 @@ import { tweetsData } from "./data.js"
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 // console.log(uuidv4()) // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 
-const tweetInput = document.getElementById("tweet-input")
 const tweetBtn = document.getElementById("tweet-btn")
 
 // ⬇️ USER INTERFACE ⬇️
@@ -74,19 +73,21 @@ function handleReplyClick(replyId) {
 
 // handle clicks on the tweet button
 function handleTweetBtnClick() {
-    const newTweet = {
-        handle: `@Scrimba 💎`,
-        profilePic: `images/scrimbalogo.png`,
-        likes: 0,
-        retweets: 0,
-        tweetText: tweetInput.value,
-        replies: [],
-        isLiked: false,
-        isRetweeted: false,
-        uuid: uuidv4(),
-    }
+    const tweetInput = document.getElementById("tweet-input")
 
-    if (tweetInput.value != "") {
+    if (tweetInput.value) {
+        const newTweet = {
+            handle: `@Scrimba 💎`,
+            profilePic: `images/scrimbalogo.png`,
+            likes: 0,
+            retweets: 0,
+            tweetText: tweetInput.value,
+            replies: [],
+            isLiked: false,
+            isRetweeted: false,
+            uuid: uuidv4(),
+        }
+
         tweetsData.unshift(newTweet) // add a new tweet to the top of the feed!
         tweetInput.value = ""
         renderFeed()
