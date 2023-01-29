@@ -74,7 +74,6 @@ function handleReplyClick(replyId) {
 
 // handle clicks on the tweet button
 function handleTweetBtnClick() {
-    // console.log(tweetInput.value)
     const newTweet = {
         handle: `@Scrimba 💎`,
         profilePic: `images/scrimbalogo.png`,
@@ -87,7 +86,8 @@ function handleTweetBtnClick() {
         uuid: uuidv4(),
     }
 
-    console.log(newTweet)
+    tweetsData.unshift(newTweet) // add a new tweet to the top of the feed!
+    renderFeed()
 }
 
 // ⬇️ RENDER THE FEED ⬇️
