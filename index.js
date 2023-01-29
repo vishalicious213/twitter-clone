@@ -87,6 +87,7 @@ function handleTweetBtnClick() {
     }
 
     tweetsData.unshift(newTweet) // add a new tweet to the top of the feed!
+    tweetInput.value = ""
     renderFeed()
 }
 
