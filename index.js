@@ -86,9 +86,11 @@ function handleTweetBtnClick() {
         uuid: uuidv4(),
     }
 
-    tweetsData.unshift(newTweet) // add a new tweet to the top of the feed!
-    tweetInput.value = ""
-    renderFeed()
+    if (tweetInput.value != "") {
+        tweetsData.unshift(newTweet) // add a new tweet to the top of the feed!
+        tweetInput.value = ""
+        renderFeed()
+    }
 }
 
 // ⬇️ RENDER THE FEED ⬇️
