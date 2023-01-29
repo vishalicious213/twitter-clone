@@ -32,6 +32,13 @@ document.addEventListener("click", function(e) {
     }
 })
 
+// listen for clicks on the tweet text
+document.addEventListener("click", function(e) {
+    if (e.target.dataset.text) {
+        console.log("tweet text", e.target.dataset.text)
+    }
+})
+
 // handle clicks on the like button
 function handleLikeClick(tweetId) {
     const targetTweetObj = tweetsData.filter(function(tweet) {
@@ -143,7 +150,7 @@ function getFeedHtml() {
                     <img src="${tweet.profilePic}" class="profile-pic">
                     <div>
                         <p class="handle">${tweet.handle}</p>
-                        <p class="tweet-text">${tweet.tweetText}</p>
+                        <p class="tweet-text" data-text="${tweet.uuid}">${tweet.tweetText}</p>
                         <div class="tweet-details">
                             <span class="tweet-detail">
                                 <i 
