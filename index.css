@@ -131,3 +131,17 @@ button {
 .hidden {
     display: none;
 }
+
+/* modal */
+
+.reply-modal {
+    outline: 1px solid red;
+}
+
+.reply-modal-close-btn {
+    outline: 1px solid orange;
+}
+
+#reply-modal-form {
+    outline: 1px solid green;
+}
