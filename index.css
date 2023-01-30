@@ -147,7 +147,7 @@ button {
     right: 0;
     width: 90%;
     max-width: 420px;
-    height: 300px;
+    height: 15rem;
     background-color: white;
     border-radius: 1rem;
 }
@@ -163,6 +163,7 @@ button {
     color: black;
     display: flex;
     justify-content: center;
+    margin-bottom: 0;
 }
 
 .reply-modal-close-btn:hover {
@@ -177,6 +178,7 @@ button {
 #reply-modal-form {
     outline: 1px solid green;
     width: 90%;
+    margin: 0;
 }
 
 #tweet-reply-input {
@@ -193,4 +195,8 @@ button {
     position: absolute;
     bottom: .5rem;
     right: .5rem;
+}
+
+.hidden {
+    display: none;
 }
