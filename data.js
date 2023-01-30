@@ -5,7 +5,13 @@ export const tweetsData = [
         likes: 213,
         retweets: 153,
         tweetText: `Click a tweet's text to reply`,
-        replies: [],
+        replies: [
+            {
+                handle: `@JeffBerlin ✅`,
+                profilePic: `images/jeffberlin.jpg`,
+                tweetText: `An array of objects?!! Jaco only needed 4 strings.`,
+            },
+        ],
         isLiked: false,
         isRetweeted: false,
         uuid: '8e2l8la1-c0f5-1017-5v17-213k144a307r',
