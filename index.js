@@ -121,15 +121,19 @@ function handleTweetTextClick(tweetId) {
 
     replyButton.addEventListener("click", function() {
         const replyText = document.getElementById("tweet-reply-input")
-        const newReply = {
-            handle: `@Scrimba ✅`,
-            profilePic: `images/scrimbalogo.png`,
-            tweetText: replyText.value,
-        }
 
-        targetTweetObj.replies.push(newReply)
-        replyModal.classList.add("hidden")
-        renderFeed()
+        if (replyText.value) {
+            const newReply = {
+                handle: `@Scrimba ✅`,
+                profilePic: `images/scrimbalogo.png`,
+                tweetText: replyText.value,
+            }
+    
+            targetTweetObj.replies.push(newReply)
+            replyModal.classList.add("hidden")
+            replyText.value = ""
+            renderFeed()
+        }
     }, {once: true}) // removes the event listener after its done (so we don't append replies to more than one tweet)
 }
 
