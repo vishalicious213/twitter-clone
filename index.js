@@ -108,9 +108,17 @@ function handleTweetTextClick(tweetId) {
     const replyModal = document.getElementById("reply-modal")
     const closeButton = document.getElementById("reply-modal-close-btn")
     const replyButton = document.getElementById("reply-modal-reply-btn")
+    const modalHeader = document.getElementById("modal-header")
+    
     const targetTweetObj = tweetsData.filter(function(tweet) {
         return tweet.uuid === tweetId
     })[0] // filter returns an array, adding the [0] returns the 1st array element
+
+    modalHeader.innerHTML = `
+        <img src="images/scrimbalogo.png" class="profile-pic">
+        <hr id="speakers">
+        <img src="${targetTweetObj.profilePic}" class="profile-pic">
+    `
 
     // console.log("tweet text", targetTweetObj.tweetText)
     // open the modal when a tweet's text is clicked. close it when the X is clicked

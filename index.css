@@ -200,3 +200,17 @@ button {
 .hidden {
     display: none;
 }
+
+#modal-header {
+    /* outline: 1px solid red; */
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: .5rem;
+    right: 1.5rem;
+}
+
+#speakers {
+    width: 5rem;
+    margin: 0 .25rem;
+}
