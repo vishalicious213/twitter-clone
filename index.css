@@ -136,10 +136,41 @@ button {
 
 .reply-modal {
     outline: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    margin: auto;
+    top: 80px;
+    left: 0;
+    right: 0;
+    width: 90%;
+    max-width: 420px;
+    height: 300px;
+    background-color: white;
 }
 
 .reply-modal-close-btn {
-    outline: 1px solid orange;
+    /* outline: 1px solid orange; */
+    width: .5rem;
+    border-radius: 50%;
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    background-color: transparent;
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.reply-modal-close-btn:hover {
+    background-color: whitesmoke;
+    outline: none;
+}
+
+.reply-modal-close-btn:focus {
+    outline: none;
 }
 
 #reply-modal-form {
