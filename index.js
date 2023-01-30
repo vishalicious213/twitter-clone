@@ -107,24 +107,30 @@ function handleTweetBtnClick() {
 function handleTweetTextClick(tweetId) {
     const replyModal = document.getElementById("reply-modal")
     const closeButton = document.getElementById("reply-modal-close-btn")
+    const replyButton = document.getElementById("reply-modal-reply-btn")
     const targetTweetObj = tweetsData.filter(function(tweet) {
         return tweet.uuid === tweetId
     })[0] // filter returns an array, adding the [0] returns the 1st array element
 
     // console.log("tweet text", targetTweetObj.tweetText)
+    // open the modal when a tweet's text is clicked. close it when the X is clicked
     replyModal.classList.remove("hidden")
     closeButton.addEventListener("click", function() {
         replyModal.classList.add("hidden")
     })
 
-    const newReply = {
-        handle: `@Scrimba ✅`,
-        profilePic: `images/scrimbalogo.png`,
-        tweetText: `Reply from @Scrimba!`,
-    }
+    replyButton.addEventListener("click", function() {
+        const replyText = document.getElementById("tweet-reply-input")
+        const newReply = {
+            handle: `@Scrimba ✅`,
+            profilePic: `images/scrimbalogo.png`,
+            tweetText: replyText.value,
+        }
 
-    // targetTweetObj.replies.push(newReply)
-    // renderFeed()
+        targetTweetObj.replies.push(newReply)
+        replyModal.classList.add("hidden")
+        renderFeed()
+    }, {once: true}) // removes the event listener after its done (so we don't append replies to more than one tweet)
 }
 
 // ⬇️ RENDER THE FEED ⬇️
