@@ -187,3 +187,10 @@ button {
 #tweet-reply-input:focus {
     outline: none;
 }
+
+#reply-modal-reply-btn {
+    width: 6rem;
+    position: absolute;
+    bottom: .5rem;
+    right: .5rem;
+}
