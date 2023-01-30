@@ -106,12 +106,16 @@ function handleTweetBtnClick() {
 // handle clicks on the tweet text (reply to tweet)
 function handleTweetTextClick(tweetId) {
     const replyModal = document.getElementById("reply-modal")
+    const closeButton = document.getElementById("reply-modal-close-btn")
     const targetTweetObj = tweetsData.filter(function(tweet) {
         return tweet.uuid === tweetId
     })[0] // filter returns an array, adding the [0] returns the 1st array element
 
     // console.log("tweet text", targetTweetObj.tweetText)
     replyModal.classList.remove("hidden")
+    closeButton.addEventListener("click", function() {
+        replyModal.classList.add("hidden")
+    })
 
     const newReply = {
         handle: `@Scrimba ✅`,
