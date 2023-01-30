@@ -71,6 +71,10 @@ button {
     font-weight: 600;
 }
 
+button:hover {
+    opacity: .8;
+}
+
 /* tweet */
 
 .tweet {
@@ -135,7 +139,6 @@ button {
 /* modal */
 
 .reply-modal {
-    outline: 1px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -150,10 +153,10 @@ button {
     height: 15rem;
     background-color: white;
     border-radius: 1rem;
+    box-shadow: 5px 5px 15px 5px #BABABA;
 }
 
 .reply-modal-close-btn {
-    /* outline: 1px solid orange; */
     width: .5rem;
     border-radius: 50%;
     position: absolute;
@@ -176,7 +179,6 @@ button {
 }
 
 #reply-modal-form {
-    outline: 1px solid green;
     width: 90%;
     margin: 0;
 }
@@ -202,7 +204,6 @@ button {
 }
 
 #modal-header {
-    /* outline: 1px solid red; */
     display: flex;
     align-items: center;
     position: absolute;

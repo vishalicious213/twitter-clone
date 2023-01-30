@@ -103,22 +103,24 @@ function handleTweetBtnClick() {
     }
 }
 
-// handle clicks on the tweet text (reply to tweet)
+// handle clicks on the tweet text (reply to tweet via modal)
 function handleTweetTextClick(tweetId) {
     const replyModal = document.getElementById("reply-modal")
     const closeButton = document.getElementById("reply-modal-close-btn")
     const replyButton = document.getElementById("reply-modal-reply-btn")
     const modalHeader = document.getElementById("modal-header")
+    const replyInput = document.getElementById("tweet-reply-input")
     
     const targetTweetObj = tweetsData.filter(function(tweet) {
         return tweet.uuid === tweetId
     })[0] // filter returns an array, adding the [0] returns the 1st array element
 
     modalHeader.innerHTML = `
-        <img src="images/scrimbalogo.png" class="profile-pic">
+        <img src="images/scrimbalogo.png" class="profile-pic" alt="@Scrimba ✅">
         <hr id="speakers">
-        <img src="${targetTweetObj.profilePic}" class="profile-pic">
+        <img src="${targetTweetObj.profilePic}" class="profile-pic" alt="${targetTweetObj.handle}">
     `
+    replyInput.placeholder = `Reply to ${targetTweetObj.handle}`
 
     // console.log("tweet text", targetTweetObj.tweetText)
     // open the modal when a tweet's text is clicked. close it when the X is clicked
@@ -176,7 +178,7 @@ function getFeedHtml() {
                 repliesHtml += `
                     <div class="tweet-reply">
                         <div class="tweet-inner">
-                            <img src="${reply.profilePic}" class="profile-pic">
+                            <img src="${reply.profilePic}" class="profile-pic" alt="${reply.handle}">
                                 <div>
                                     <p class="handle">${reply.handle}</p>
                                     <p class="tweet-text">${reply.tweetText}</p>
@@ -191,7 +193,7 @@ function getFeedHtml() {
         feedHtml += `
             <div class="tweet">
                 <div class="tweet-inner">
-                    <img src="${tweet.profilePic}" class="profile-pic">
+                    <img src="${tweet.profilePic}" class="profile-pic" alt="${tweet.handle}">
                     <div>
                         <p class="handle">${tweet.handle}</p>
                         <p class="tweet-text" data-text="${tweet.uuid}">${tweet.tweetText}</p>
