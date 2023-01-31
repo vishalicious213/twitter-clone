@@ -124,8 +124,6 @@ function handleTweetTextClick(tweetId) {
         return tweet.uuid === tweetId
     })[0] // filter returns an array, adding the [0] returns the 1st array element
 
-    console.log(targetTweetObj)
-
     modalHeader.innerHTML = `
         <img src="images/scrimbalogo.png" class="profile-pic" alt="@Scrimba ✅">
         <hr id="speakers">
