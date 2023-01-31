@@ -42,6 +42,31 @@ I added on to the project with the ability to click on a tweet's text to display
     - event.target.dataset
 - uuid's
 
+## CSS concepts
+
+- Font Awesome classes
+- cursor: pointer
+- element:hover
+- element:focus
+- display: flex
+    - align-items
+    - justify-content
+    - flex-direction
+    - gap
+- display: none
+- textarea
+    - resize: none
+- opacity
+- position: absolute
+- position: fixed
+    - top
+    - left
+    - right
+- max-width
+- box-shadow
+- background-color: transparent
+- outline: none
+
 ## HTML concepts
 
 - imported Google fonts
