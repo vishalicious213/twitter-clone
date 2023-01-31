@@ -1,13 +1,11 @@
 import { tweetsData } from "./data.js"
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
-// console.log(uuidv4()) // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 
 const tweetBtn = document.getElementById("tweet-btn")
-
 let feedSource = [] // get tweets from localStorage or from tweetsData
 let localFeed = JSON.parse(localStorage.getItem("tweets"))
-    
-// use tweets in localStorage if available, or save tweetsData to localStorage
+
+// use tweets from localStorage if available, or save tweetsData to localStorage
 if (localFeed) {
     feedSource = localFeed
 } else {
@@ -37,7 +35,7 @@ document.addEventListener("click", function(e) {
     }
 })
 
-// listen for clicks on the replies icon (to open replies)
+// listen for clicks on the replies icon (to read replies)
 document.addEventListener("click", function(e) {
     if (e.target.dataset.reply) {
         handleReplyClick(e.target.dataset.reply)
@@ -66,7 +64,6 @@ function handleLikeClick(tweetId) {
     }
 
     targetTweetObj.isLiked = !targetTweetObj.isLiked
-
     renderFeed()
 }
 
@@ -83,7 +80,6 @@ function handleRetweetClick(tweetId) {
     }
 
     targetTweetObj.isRetweeted = !targetTweetObj.isRetweeted
-
     renderFeed()
 }
 
@@ -109,7 +105,7 @@ function handleTweetBtnClick() {
             uuid: uuidv4(),
         }
 
-        feedSource.unshift(newTweet) // add a new tweet to the top of the feed!
+        feedSource.unshift(newTweet) // add a new tweet to the top of the feed
         localStorage.setItem("tweets", JSON.stringify(feedSource))
         tweetInput.value = ""
         renderFeed()
@@ -137,13 +133,13 @@ function handleTweetTextClick(tweetId) {
     `
     replyInput.placeholder = `Reply to ${targetTweetObj.handle}`
 
-    // console.log("tweet text", targetTweetObj.tweetText)
     // open the modal when a tweet's text is clicked. close it when the X is clicked
     replyModal.classList.remove("hidden")
     closeButton.addEventListener("click", function() {
         replyModal.classList.add("hidden")
     })
 
+    // save tweet reply to localStorage, clear input field & close modal
     replyButton.addEventListener("click", function() {
         const replyText = document.getElementById("tweet-reply-input")
 
@@ -154,7 +150,6 @@ function handleTweetTextClick(tweetId) {
                 tweetText: replyText.value,
             }
     
-            // targetTweetObj.replies.push(newReply)
             replyModal.classList.add("hidden")
             replyText.value = ""
             saveRepliesLocally(tweetId, newReply)
@@ -163,32 +158,23 @@ function handleTweetTextClick(tweetId) {
     }, {once: true}) // removes the event listener after its done (so we don't append replies to more than one tweet)
 }
 
+// helper to save tweet replies to localStorage called by handleTweetTextClick()
 function saveRepliesLocally(tweetId, replyDetails) {
-    console.log(tweetId, replyDetails)
-    // let localFeed = JSON.parse(localStorage.getItem("tweets"))
-
-    // if no localFeed, save tweetsData to localStorage & localFeed
-    // if (!localFeed) {
-    //     localStorage.setItem("tweets", JSON.stringify(tweetsData))
-    //     localFeed = JSON.parse(localStorage.getItem("tweets"))
-    // }
-
-    // find tweet in localStorage, append new reply
+    // find tweet in localStorage
     const targetTweetObj = localFeed.filter(function(tweet) {
         return tweet.uuid === tweetId
-    })[0] // filter returns an array, adding the [0] returns the 1st array element
+    })[0]
 
     const replyToSave = {
-        // tweetId,
         handle: replyDetails.handle,
         profilePic: replyDetails.profilePic,
         tweetText: replyDetails.tweetText
     }
 
+    // add reply to tweet's replies and save to localStorage. render feed
     targetTweetObj.replies.push(replyToSave)
     localStorage.setItem("tweets", JSON.stringify(localFeed))
     renderFeed()
-    // localStorage.setItem("replies", JSON.stringify(tweetsData))
 }
 
 // ⬇️ RENDER THE FEED ⬇️
@@ -201,19 +187,10 @@ function renderFeed() {
 // iterate through tweets data and create HTML for each tweet
 function getFeedHtml() {
     let feedHtml = ""
-    // let feedSource = [] // get tweets from localStorage or from tweetsData
-    // let localFeed = JSON.parse(localStorage.getItem("tweets"))
-    
-    // // use tweets in localStorage if available, or fall back on tweetsData
-    // if (localFeed) {
-    //     feedSource = localFeed
-    // } else {
-    //     feedSource = tweetsData
-    // }
 
     feedSource.forEach(function(tweet) {
-        let likeIconClass = "" // add this empty class to the "liked" icon
-        let retweetIconClass = ""
+        let likeIconClass = "" // styles the 'like' icon if clicked
+        let retweetIconClass = "" // styles the 'retweet' icon if clicked
         let repliesHtml = "" // this will hold replies to a tweet
 
         // if tweet is liked, populate likeIconClass with "liked" to change its color

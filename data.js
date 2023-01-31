@@ -4,7 +4,7 @@ export const tweetsData = [
         profilePic: `images/headshot4.jpg`,
         likes: 213,
         retweets: 153,
-        tweetText: `Click a tweet's text to reply / New tweets are saved locally`,
+        tweetText: `Click a tweet's text to reply / New tweets are saved locally / New replies are saved locally 💪`,
         replies: [
             {
                 handle: `@JeffBerlin ✅`,
