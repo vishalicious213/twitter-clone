@@ -4,6 +4,16 @@ import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 
 const tweetBtn = document.getElementById("tweet-btn")
 
+let feedSource = [] // get tweets from localStorage or from tweetsData
+let localFeed = JSON.parse(localStorage.getItem("tweets"))
+    
+// use tweets in localStorage if available, or fall back on tweetsData
+if (localFeed) {
+    feedSource = localFeed
+} else {
+    feedSource = tweetsData
+}
+
 // ⬇️ USER INTERFACE ⬇️
 
 // listen for clicks on the tweet button
@@ -43,7 +53,7 @@ document.addEventListener("click", function(e) {
 
 // handle clicks on the like button
 function handleLikeClick(tweetId) {
-    const targetTweetObj = tweetsData.filter(function(tweet) {
+    const targetTweetObj = feedSource.filter(function(tweet) {
         return tweet.uuid === tweetId
     })[0] // filter returns an array, adding the [0] returns the 1st array element
 
@@ -60,7 +70,7 @@ function handleLikeClick(tweetId) {
 
 // handle clicks on the retweet button
 function handleRetweetClick(tweetId) {
-    const targetTweetObj = tweetsData.filter(function(tweet) {
+    const targetTweetObj = feedSource.filter(function(tweet) {
         return tweet.uuid === tweetId
     })[0]
 
@@ -112,9 +122,11 @@ function handleTweetTextClick(tweetId) {
     const modalHeader = document.getElementById("modal-header")
     const replyInput = document.getElementById("tweet-reply-input")
     
-    const targetTweetObj = tweetsData.filter(function(tweet) {
+    const targetTweetObj = feedSource.filter(function(tweet) {
         return tweet.uuid === tweetId
     })[0] // filter returns an array, adding the [0] returns the 1st array element
+
+    console.log(targetTweetObj)
 
     modalHeader.innerHTML = `
         <img src="images/scrimbalogo.png" class="profile-pic" alt="@Scrimba ✅">
@@ -143,9 +155,38 @@ function handleTweetTextClick(tweetId) {
             targetTweetObj.replies.push(newReply)
             replyModal.classList.add("hidden")
             replyText.value = ""
+            saveRepliesLocally(tweetId, newReply)
             renderFeed()
         }
     }, {once: true}) // removes the event listener after its done (so we don't append replies to more than one tweet)
+}
+
+function saveRepliesLocally(tweetId, replyDetails) {
+    console.log(tweetId, replyDetails)
+    // let localFeed = JSON.parse(localStorage.getItem("tweets"))
+
+    // if no localFeed, save tweetsData to localStorage & localFeed
+    if (!localFeed) {
+        localStorage.setItem("tweets", JSON.stringify(tweetsData))
+        localFeed = JSON.parse(localStorage.getItem("tweets"))
+    }
+
+    // find tweet in localStorage, append new reply
+    const targetTweetObj = localFeed.filter(function(tweet) {
+        return tweet.uuid === tweetId
+    })[0] // filter returns an array, adding the [0] returns the 1st array element
+
+    const replyToSave = {
+        // tweetId,
+        handle: replyDetails.handle,
+        profilePic: replyDetails.profilePic,
+        tweetText: replyDetails.tweetText
+    }
+
+    targetTweetObj.replies.push(replyToSave)
+    localStorage.setItem("tweets", JSON.stringify(localFeed))
+    renderFeed()
+    // localStorage.setItem("replies", JSON.stringify(tweetsData))
 }
 
 // ⬇️ RENDER THE FEED ⬇️
@@ -158,15 +199,15 @@ function renderFeed() {
 // iterate through tweets data and create HTML for each tweet
 function getFeedHtml() {
     let feedHtml = ""
-    let feedSource = [] // get tweets from localStorage or from tweetsData
-    let localFeed = JSON.parse(localStorage.getItem("tweets"))
+    // let feedSource = [] // get tweets from localStorage or from tweetsData
+    // let localFeed = JSON.parse(localStorage.getItem("tweets"))
     
-    // use tweets in localStorage if available, or fall back on tweetsData
-    if (localFeed) {
-        feedSource = localFeed
-    } else {
-        feedSource = tweetsData
-    }
+    // // use tweets in localStorage if available, or fall back on tweetsData
+    // if (localFeed) {
+    //     feedSource = localFeed
+    // } else {
+    //     feedSource = tweetsData
+    // }
 
     feedSource.forEach(function(tweet) {
         let likeIconClass = "" // add this empty class to the "liked" icon
