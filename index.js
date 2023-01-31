@@ -155,11 +155,20 @@ function renderFeed() {
     document.getElementById("feed").innerHTML = getFeedHtml()
 }
 
-// iterate through tweetsData and create HTML for each tweet
+// iterate through tweets data and create HTML for each tweet
 function getFeedHtml() {
     let feedHtml = ""
+    let feedSource = [] // get tweets from localStorage or from tweetsData
+    let localFeed = JSON.parse(localStorage.getItem("tweets"))
+    
+    // use tweets in localStorage if available, or fall back on tweetsData
+    if (localFeed) {
+        feedSource = localFeed
+    } else {
+        feedSource = tweetsData
+    }
 
-    tweetsData.forEach(function(tweet) {
+    feedSource.forEach(function(tweet) {
         let likeIconClass = "" // add this empty class to the "liked" icon
         let retweetIconClass = ""
         let repliesHtml = "" // this will hold replies to a tweet
