@@ -7,11 +7,13 @@ const tweetBtn = document.getElementById("tweet-btn")
 let feedSource = [] // get tweets from localStorage or from tweetsData
 let localFeed = JSON.parse(localStorage.getItem("tweets"))
     
-// use tweets in localStorage if available, or fall back on tweetsData
+// use tweets in localStorage if available, or save tweetsData to localStorage
 if (localFeed) {
     feedSource = localFeed
 } else {
-    feedSource = tweetsData
+    localStorage.setItem("tweets", JSON.stringify(tweetsData))
+    localFeed = JSON.parse(localStorage.getItem("tweets"))
+    feedSource = localFeed
 }
 
 // ⬇️ USER INTERFACE ⬇️
@@ -107,8 +109,8 @@ function handleTweetBtnClick() {
             uuid: uuidv4(),
         }
 
-        tweetsData.unshift(newTweet) // add a new tweet to the top of the feed!
-        localStorage.setItem("tweets", JSON.stringify(tweetsData))
+        feedSource.unshift(newTweet) // add a new tweet to the top of the feed!
+        localStorage.setItem("tweets", JSON.stringify(feedSource))
         tweetInput.value = ""
         renderFeed()
     }
@@ -166,10 +168,10 @@ function saveRepliesLocally(tweetId, replyDetails) {
     // let localFeed = JSON.parse(localStorage.getItem("tweets"))
 
     // if no localFeed, save tweetsData to localStorage & localFeed
-    if (!localFeed) {
-        localStorage.setItem("tweets", JSON.stringify(tweetsData))
-        localFeed = JSON.parse(localStorage.getItem("tweets"))
-    }
+    // if (!localFeed) {
+    //     localStorage.setItem("tweets", JSON.stringify(tweetsData))
+    //     localFeed = JSON.parse(localStorage.getItem("tweets"))
+    // }
 
     // find tweet in localStorage, append new reply
     const targetTweetObj = localFeed.filter(function(tweet) {
