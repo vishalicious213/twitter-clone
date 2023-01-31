@@ -105,7 +105,7 @@ button:hover {
 .tweet-reply {
     border-top: 1px solid lightgray;
     padding: 20px 0 0 0px;
-    margin: 10px 0 10px 40px;
+    margin: 10px 0 10px 30px;
     width: 80%;
 }
 
@@ -117,7 +117,7 @@ button:hover {
 }
 
 .tweet-text {
-    width: 207px;
+    /* width: 207px; */
     font-size: 14px;
     line-height: 20px;
 }

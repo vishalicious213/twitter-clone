@@ -98,6 +98,7 @@ function handleTweetBtnClick() {
         }
 
         tweetsData.unshift(newTweet) // add a new tweet to the top of the feed!
+        localStorage.setItem("tweets", JSON.stringify(tweetsData))
         tweetInput.value = ""
         renderFeed()
     }
