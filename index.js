@@ -154,7 +154,7 @@ function handleTweetTextClick(tweetId) {
                 tweetText: replyText.value,
             }
     
-            targetTweetObj.replies.push(newReply)
+            // targetTweetObj.replies.push(newReply)
             replyModal.classList.add("hidden")
             replyText.value = ""
             saveRepliesLocally(tweetId, newReply)
