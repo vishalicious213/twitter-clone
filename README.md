@@ -7,3 +7,39 @@ The top of the window, above the feed, shows the user's profile picture and give
 I added on to the project with the ability to click on a tweet's text to display a modal and reply to a tweet, much like the real Twitter. This reply gets added to the tweet's replies in chronological order. All tweets and replies are saved to local storage, so they persist if the window is closed and reopened again. To do this, I refactored the code and changed the data source, along with making a series of functions to handle user input, accessing the correct tweet and its replies, and saving data.
 
 Deployed at: https://vish213-twimba.netlify.app/
+
+## JavaScript concepts
+
+- module imports and exports
+- document.getElementById()
+- element.innerHTML
+- element.placeholder
+- element.classList
+    - .add()
+    - .remove()
+    - .toggle()
+- element.value
+- arrays
+    - .filter()
+    - .forEach()
+    - .length()
+    - .push()
+    - .unshift()
+- objects
+- if statements
+- if...else statements
+- functions
+    - event handlers
+    - return
+- string template literals
+- localStorage
+    - .getItem()
+    - .setItem()
+    - JSON.parse()
+    - JSON.stringify()
+- event listeners
+    - addEventListener()
+    - removeEventListener()
+        - {once: true}
+    - event.target.dataset
+- uuid's
