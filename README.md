@@ -80,5 +80,7 @@ I added on to the project with the ability to click on a tweet's text to display
 - buttons
 - i-tags for Font Awesome
 - images
+- script
+    - type="module"
 
 Deployed at: https://vish213-twimba.netlify.app/
